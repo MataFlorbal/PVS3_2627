@@ -1,5 +1,6 @@
 package Vyuka.basics;
 
+import fileworks.DataExport;
 import fileworks.DataImport;
 
 import java.io.IOException;
@@ -7,7 +8,7 @@ import java.util.Arrays;
 
 public class ParseFile {
     public static void main(String[] args) throws IOException {
-        //imort dat
+        //imort souboru
         String path = "data/countries.txt";
         DataImport di = new DataImport(path);
 
@@ -45,6 +46,11 @@ public class ParseFile {
         Country czechia = new Country("Czech Republic", "Europa", 10800000L, 85.0);
         System.out.println(czechia);
 
+        //export souboru
+        DataExport de = new DataExport("output.txt");
+
+
+
         while (di.hasNext()) {
             //vypis vsech radku jako objekty tridy country
             String line = di.readLine();
@@ -57,8 +63,13 @@ public class ParseFile {
 
             Country oneCountry = new Country(name, continent, population, avgAge);
 
+            if (oneCountry.continent.equals("Europe")){
+                de.writeLine(oneCountry.toString());
+            }
+
             System.out.println(oneCountry);
         }
+        de.finishExport();
         di.finishImport();
     }
 }
