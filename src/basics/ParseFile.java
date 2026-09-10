@@ -1,5 +1,6 @@
 package basics;
 
+import fileworks.DataExport;
 import fileworks.DataImport;
 
 import java.io.IOException;
@@ -51,11 +52,13 @@ public class ParseFile {
                 85.0);
 
         System.out.println(czechia);
+        DataExport de = new DataExport("output.txt");
+
 
         // Vypsat všechny řádky jako objekty (třídy Country)
         // 1. přečíst soubor
         //  1.1 přečíst řádek
-        //
+        //  1.2 do souboru output vypsat pouze země Evropy
 
         while (di.hasNext()) {
             String line = di.readLine(); // načíst řádek
@@ -74,8 +77,15 @@ public class ParseFile {
                     population,
                     avgAge
             );
+
+            if (oneCountry.continent.equals("Europe")){
+                de.writeLine(oneCountry.toString());
+            }
+
             System.out.println(oneCountry);
         }
+
+        de.finishExport();
         di.finishImport();
     }
 }

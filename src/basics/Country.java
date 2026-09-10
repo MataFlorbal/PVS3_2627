@@ -14,13 +14,9 @@ public class Country {
         this.avgAge = avgAge;
     }
 
+
     @Override
     public String toString() {
-        return "Country{" +
-                "name='" + name + '\'' +
-                ", continent='" + continent + '\'' +
-                ", population=" + population +
-                ", avgAge=" + avgAge +
-                '}';
+        return name + " (" + continent + ") [" + population + " people, average life expectancy: " + avgAge + "]";
     }
 }
