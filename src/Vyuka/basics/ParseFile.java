@@ -8,38 +8,40 @@ import java.util.Arrays;
 
 public class ParseFile {
     public static void main(String[] args) throws IOException {
-        //imort souboru
+        //import souboru
         String path = "data/countries.txt";
         DataImport di = new DataImport(path);
 
-        //      //di.printFile(); //vypis vseho
-        //      System.out.println(di.readLine()); //vypis radku
+        /*
+              //di.printFile(); //vypis vseho
+              System.out.println(di.readLine()); //vypis radku
 
-        //      //vypis informace jednoho radku
-        //      String name;
-        //      String continent;
-        //      long population;
-        //      double avgAge;
+              //vypis informace jednoho radku
+              String name;
+              String continent;
+              long population;
+              double avgAge;
 
-        //      //vypis vseho, bez printFile
-        //      di.reinitializeRead();
-        //      while (di.hasNext()){
-        //          System.out.println(di.readLine());
-        //      }
+              //vypis vseho, bez printFile
+              di.reinitializeRead();
+              while (di.hasNext()){
+                  System.out.println(di.readLine());
+              }
 
-        //      //nacteni, rozdeleni, parsing a vypis jednoho radku
-        //      String output = di.readLine();
-        //      String [] tokens = output.split(";");
-        //
-        //      name = tokens[0];
-        //      continent = tokens[1];
-        //      population = Long.parseLong(tokens[2]);
-        //      avgAge = Double.parseDouble(tokens[3]);
+              //nacteni, rozdeleni, parsing a vypis jednoho radku
+              String output = di.readLine();
+              String [] tokens = output.split(";");
 
-        //      System.out.println(name);
-        //      System.out.println(continent);
-        //      System.out.println(population);
-        //      System.out.println(avgAge);
+              name = tokens[0];
+              continent = tokens[1];
+              population = Long.parseLong(tokens[2]);
+              avgAge = Double.parseDouble(tokens[3]);
+
+              System.out.println(name);
+              System.out.println(continent);
+              System.out.println(population);
+              System.out.println(avgAge);
+         */
 
         //vypis jednoho radku jako objekt tridy country
 
