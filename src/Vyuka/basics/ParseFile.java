@@ -53,24 +53,55 @@ public class ParseFile {
 
 
 
-        while (di.hasNext()) {
-            //vypis vsech radku jako objekty tridy country
-            String line = di.readLine();
-            String[] tokens = line.split(";");
+  //     while (di.hasNext()) {
+  //         //vypis vsech radku jako objekty tridy country
+  //         String line = di.readLine();
+  //         String[] tokens = line.split(";");
 
-            String name = tokens[0];
-            String continent = tokens[1];
-            long population = Long.parseLong(tokens[2]);
-            double avgAge = Double.parseDouble(tokens[3]);
+  //         String name = tokens[0];
+  //         String continent = tokens[1];
+  //         long population = Long.parseLong(tokens[2]);
+  //         double avgAge = Double.parseDouble(tokens[3]);
 
-            Country oneCountry = new Country(name, continent, population, avgAge);
+  //         Country oneCountry = new Country(name, continent, population, avgAge);
 
-            if (oneCountry.continent.equals("Europe")){
-                de.writeLine(oneCountry.toString());
+  //         if (oneCountry.continent.equals("Europe")){
+  //             de.writeLine(oneCountry.toString());
+  //         }
+
+  //         System.out.println(oneCountry);
+  //     }
+
+        Country bestAge = new Country("TBD", "TBD", 42L, Double.MIN_VALUE);
+        Country worstPopulation = new Country("TBD", "TBD", Long.MAX_VALUE, 42);
+
+        while(di.hasNext()){
+            String radek = di.readLine();
+            String [] casti = radek.split(";");
+
+            String jmeno = casti[0];
+            String kontinent = casti[1];
+            Long populace = Long.parseLong(casti[2]);
+            double prumernyVek = Double.parseDouble(casti[3]);
+
+            //vypis nejvetsi prumerneho veku
+            if (bestAge.avgAge < prumernyVek){
+                bestAge.name = jmeno;
+                bestAge.continent = kontinent;
+                bestAge.population = populace;
+                bestAge.avgAge = prumernyVek;
             }
-
-            System.out.println(oneCountry);
+            //vypis nejhorsi populace
+            if (worstPopulation.avgAge > populace){
+                worstPopulation.name = jmeno;
+                worstPopulation.continent = kontinent;
+                worstPopulation.population = populace;
+                worstPopulation.avgAge = prumernyVek;
+            }
         }
+        System.out.println(bestAge);
+        System.out.println(worstPopulation);
+
         de.finishExport();
         di.finishImport();
     }
