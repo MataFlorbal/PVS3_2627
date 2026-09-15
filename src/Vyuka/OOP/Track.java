@@ -1,5 +1,9 @@
 package Vyuka.OOP;
 
+import fileworks.DataImport;
+
+import java.util.ArrayList;
+
 public class Track {
     String name;
     int year;
@@ -23,6 +27,29 @@ public class Track {
                 '}';
     }
 
+    public static void main(String[] args) {
+        DataImport di = new DataImport("data/tracks.txt");
+
+        ArrayList<Track> tracks = new ArrayList<>();
+
+        while (di.hasNext()){
+            String line = di.readLine();
+            String[] tokens = line.split(";");
+
+            Track song = new Track(tokens[0],
+                    Integer.parseInt(tokens[1]),
+                    Double.parseDouble(tokens[2]),
+                    Integer.parseInt(tokens[3]));
+
+            tracks.add(song);
+
+        }
+        System.out.println(tracks.get(0));
+        System.out.println(tracks.get(tracks.size()-1));
+
+        di.finishImport();
+    }
+
     public void setDuration (int duration){
         if (duration < 0){
             System.out.println("Neplatna hodnota");
@@ -33,7 +60,7 @@ public class Track {
         }
     }
     public  void setRating (double rating){
-        if (rating < 0.0 && rating > 10.0){
+        if (rating < 0.0 || rating > 10.0){
             System.out.println("Neplatna hodnota");
             return;
         }

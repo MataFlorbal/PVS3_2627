@@ -21,7 +21,7 @@ public class Country {
 
     }
     public  void setAvgAge (double avgAge){
-        if (avgAge >= 13 && avgAge <= 101){
+        if (avgAge >= 20 && avgAge <= 101){
             this.avgAge = avgAge;
             return;
         }
@@ -31,9 +31,8 @@ public class Country {
     }
 
     public void setPopulation (long population){
-        if (population < 10_000 && population > 2_000_000_000){
+        if (population < 10_000 || population > 2_000_000_000){
             System.out.println("Population out of range");
-            return;
         }
         else{
             this.population = population;
