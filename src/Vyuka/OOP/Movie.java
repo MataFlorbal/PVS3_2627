@@ -83,7 +83,7 @@ public class Movie {
 
         for (Movie film : movies){
             if (film.getGenre().equalsIgnoreCase("Horror")){
-                de.writeLine(film.getName());
+                de.writeLine(film.toString());
             }
         }
 
