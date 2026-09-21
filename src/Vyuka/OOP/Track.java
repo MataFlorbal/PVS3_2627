@@ -1,5 +1,6 @@
 package Vyuka.OOP;
 
+import fileworks.DataExport;
 import fileworks.DataImport;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class Track {
 
     public static void main(String[] args) {
         DataImport di = new DataImport("data/tracks.txt");
+        DataExport de = new DataExport("horrors.txt");
 
         ArrayList<Track> tracks = new ArrayList<>();
 
@@ -46,7 +48,7 @@ public class Track {
         }
         System.out.println(tracks.get(0));
         System.out.println(tracks.get(tracks.size()-1));
-
+        de.finishExport();
         di.finishImport();
     }
 
