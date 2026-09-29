@@ -6,6 +6,10 @@ class Point{
    private final double DEFAULT_Z = 0;
    private static int pointsCreated = 1;
 
+    public static int getPointsCreated() {
+        return pointsCreated;
+    }
+
     public String getName() {
         return name;
     }
