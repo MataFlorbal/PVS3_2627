@@ -1,5 +1,9 @@
 package Vyuka.OOP;
 
+import fileworks.DataImport;
+
+import java.util.ArrayList;
+
 class Point{
    private String name;
    private Double x, y, z;
@@ -72,6 +76,34 @@ class Point{
 
 public class Points {
     public static void main(String[] args) {
+        DataImport di = new DataImport("data/points.txt");
+        ArrayList<Point> points = new ArrayList<>();
 
+        String line;
+        String[] tokens;
+
+        while (di.hasNext()){
+            line = di.readLine();
+            tokens = line.split(",");
+
+            switch (tokens.length){
+                case 2 : points.add(new Point(Double.parseDouble(tokens[0]),
+                        Double.parseDouble(tokens[1])));
+                    break;
+                case 3 : points.add(new Point(tokens[0],
+                        Double.parseDouble(tokens[1]),
+                        Double.parseDouble(tokens[2])));
+                    break;
+                case 4 : points.add(new Point(tokens[0],
+                        Double.parseDouble(tokens[1]),
+                        Double.parseDouble(tokens[2]),
+                        Double.parseDouble(tokens[3])));
+                    break;
+            }
+
+        }
+
+
+        di.finishImport();
     }
 }
