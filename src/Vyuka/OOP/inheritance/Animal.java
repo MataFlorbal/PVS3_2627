@@ -48,7 +48,7 @@ class Cat extends Animal {
 
     @Override
     public void makeNoise() {
-        System.out.println("Moew");
+        System.out.println("Meow");
     }
 
 }
