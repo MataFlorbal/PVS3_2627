@@ -60,6 +60,7 @@ class HuntingSeason{
         switch (random){
             case 1: {
                 hunter.hunt();
+                break;
             }
             case 2: {
                 if (hunter instanceof Soldier){
@@ -68,6 +69,7 @@ class HuntingSeason{
                 else {
                     hunter.gold -= 10;
                 }
+                break;
             }
             case 3: {
                 if (hunter instanceof Witcher){
@@ -76,6 +78,7 @@ class HuntingSeason{
                 else {
                     hunter.gold -= 10;
                 }
+                break;
             }
         }
     }
@@ -126,6 +129,7 @@ class HuntingSeason{
                     currentHunter = new Hunter(tokens[0]);
                     break;
             }
+            processTasks(currentHunter, tokens);
             hunters.add(currentHunter);
         }
         di.finishImport();
@@ -134,34 +138,31 @@ class HuntingSeason{
     public static void main(String[] args) {
         ArrayList<Hunter> hunters = new ArrayList<>();
 
+        loadData("data/hunters.txt", hunters);
         if (hunters.isEmpty()){
-            return;
+            hunters.add((new Hunter ("Bard")));
+            hunters.add((new Soldier("Ciri")));
+            hunters.add((new Soldier("Mysilov")));
+            hunters.add((new Witcher("Geralt")));
+            hunters.add((new Witcher("Vesemir")));
+
+            int pocetZakazek = 100;
+
+            Random rndm = new Random();
+            int randomIndex;
+
+            for (int i = 0; i < pocetZakazek; i++) {
+                randomIndex = rndm.nextInt(0, hunters.size());
+                randomJob(hunters.get(randomIndex));
+            }
         }
-
-
-        hunters.add((new Hunter ("Bard")));
-        hunters.add((new Soldier("Ciri")));
-        hunters.add((new Soldier("Mysilov")));
-        hunters.add((new Witcher("Geralt")));
-        hunters.add((new Witcher("Vesemir")));
-
-        int pocetZakazek = 100;
-
-        Random rndm = new Random();
-        int randomIndex;
-
-        for (int i = 0; i < pocetZakazek; i++) {
-            randomIndex = rndm.nextInt(0, hunters.size());
-            randomJob(hunters.get(randomIndex));
-        }
-
 
         Hunter nejlepsiHunter = hunters.getFirst();
         for (Hunter hunter : hunters){
 
             System.out.println(hunter.name + " ma tolik zlata: " + hunter.gold);
             if (hunter.gold > nejlepsiHunter.gold){
-                nejlepsiHunter.gold = hunter.gold;
+                nejlepsiHunter = hunter;
             }
         }
         System.out.println("Best hunter: " + nejlepsiHunter.name + ", gold: " + nejlepsiHunter.gold);
