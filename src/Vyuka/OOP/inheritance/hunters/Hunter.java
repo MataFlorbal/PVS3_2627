@@ -1,5 +1,7 @@
 package Vyuka.OOP.inheritance.hunters;
 
+import fileworks.DataImport;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -63,17 +65,80 @@ class HuntingSeason{
                 if (hunter instanceof Soldier){
                     ((Soldier) hunter).killBandit();
                 }
+                else {
+                    hunter.gold -= 10;
+                }
             }
             case 3: {
                 if (hunter instanceof Witcher){
                     ((Witcher) hunter).slayMonster();
                 }
+                else {
+                    hunter.gold -= 10;
+                }
             }
         }
     }
 
+    static void processTasks(Hunter hunter, String[] taskList){
+        for (int i = 2; i < taskList.length; i++) {
+            switch (taskList[i]){
+                case "K":
+                    if (hunter instanceof Soldier){
+                        ((Soldier) hunter).killBandit();
+                    }
+                    else {
+                        hunter.gold -= 10;
+                    }
+                    break;
+                case "M":
+                    if (hunter instanceof Witcher){
+                        ((Witcher) hunter).slayMonster();
+                    }
+                    else {
+                        hunter.gold -= 10;
+                    }
+                    break;
+                default:
+                    hunter.hunt();
+                    break;
+            }
+        }
+    }
+
+    static void loadData(String filePath, ArrayList<Hunter> hunters){
+        DataImport di = new DataImport(filePath);
+        String line;
+        String[] tokens;
+        Hunter currentHunter;
+
+        while (di.hasNext()){
+            line = di.readLine();
+            tokens = line.split(",");
+            switch (tokens[1]){
+                case "Soldier":
+                    currentHunter = new Soldier(tokens[0]);
+                    break;
+                case "Witcher":
+                    currentHunter = new Witcher(tokens[0]);
+                    break;
+                default:
+                    currentHunter = new Hunter(tokens[0]);
+                    break;
+            }
+            hunters.add(currentHunter);
+        }
+        di.finishImport();
+    }
+
     public static void main(String[] args) {
         ArrayList<Hunter> hunters = new ArrayList<>();
+
+        if (hunters.isEmpty()){
+            return;
+        }
+
+
         hunters.add((new Hunter ("Bard")));
         hunters.add((new Soldier("Ciri")));
         hunters.add((new Soldier("Mysilov")));
