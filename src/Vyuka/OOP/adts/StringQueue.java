@@ -21,9 +21,36 @@ public class StringQueue {
         if (first == null){
             return null;
         }
+
         String toReturn = first.data;
         first = first.next;
         return toReturn;
+    }
+
+    String peek(){
+        if (first == null){
+            return null;
+        }
+        return first.data;
+    }
+
+    int getSize(){
+        int sizeCounter = 1;
+        QueueLink helper = first;
+
+        if (helper == null){
+            return 0;
+        }
+
+        while (helper.next != null){
+            sizeCounter++;
+            helper = helper.next;
+        }
+        return sizeCounter;
+    }
+
+    boolean isEmpty(){
+        return first == null;
     }
 }
 
